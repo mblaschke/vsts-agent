@@ -3,7 +3,7 @@ FROM microsoft/vsts-agent:ubuntu-16.04-tfs-2018-docker-17.06.0-ce-standard
 ## Install Packages
 RUN set -x \
     && apt-get update \
-    && apt-get install \
+    && apt-get install -y -f --no-install-recommends \
         software-properties-common \
     && apt-get clean
 
@@ -17,5 +17,5 @@ RUN set -x \
 RUN set -x \
   && add-apt-repository ppa:gophers/archive \
   && apt-get update \
-  && apt-get install golang-1.9-go \
+  && apt-get install -y -f --no-install-recommends golang-1.9-go \
   && apt-get clean
