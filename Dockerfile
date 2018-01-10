@@ -13,9 +13,18 @@ RUN set -x \
     && pwsh -c "Install-Module -Force powershell-yaml" \
     && pwsh -c "Install-Module -Force Posh-SSH"
 
-## Install Golang
+## Install tools
 RUN set -x \
-  && add-apt-repository ppa:gophers/archive \
-  && apt-get update \
-  && apt-get install -y -f --no-install-recommends golang-1.9-go \
-  && apt-get clean
+  # k8s kubectl
+  && KUBECTL_VERSION=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt) \
+  && curl -L -o /usr/local/bin/kubectl "https://storage.googleapis.com/kubernetes-release/release/$KUBECTL_VERSION/bin/linux/amd64/kubectl" \
+  && chmod +x /usr/local/bin/kubectl \
+  # k8s helm
+  && HELM_VERSION=2.7.2 \
+  && mkdir -p /tmp/helm \
+  && curl -L -o /tmp/helm/helm.tar.gz "https://kubernetes-helm.storage.googleapis.com/helm-v${HELM_VERSION}-linux-amd64.tar.gz" \
+  && tar -zxvf /tmp/helm/helm.tar.gz -C /tmp/helm \
+  && mv /tmp/helm/linux-amd64/helm /usr/local/bin/helm \
+  && chmod +x /usr/local/bin/helm \
+  && rm -rf /tmp/helm
+
