@@ -5,6 +5,10 @@ RUN set -x \
     && apt-get update \
     && apt-get install -y -f --no-install-recommends \
         software-properties-common \
+        jq \
+        dos2unix \
+        mysql-client \
+        postgresql-client-9.6 \
     && apt-get clean
 
 ## Install Powershell modules
@@ -27,4 +31,3 @@ RUN set -x \
   && mv /tmp/helm/linux-amd64/helm /usr/local/bin/helm \
   && chmod +x /usr/local/bin/helm \
   && rm -rf /tmp/helm
-
