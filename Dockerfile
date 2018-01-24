@@ -8,7 +8,7 @@ RUN set -x \
         jq \
         dos2unix \
         mysql-client \
-        postgresql-client-9.6 \
+        postgresql-client \
     && apt-get clean
 
 ## Install Powershell modules
