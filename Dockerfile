@@ -30,4 +30,5 @@ RUN set -x \
   && tar -zxvf /tmp/helm/helm.tar.gz -C /tmp/helm \
   && mv /tmp/helm/linux-amd64/helm /usr/local/bin/helm \
   && chmod +x /usr/local/bin/helm \
-  && rm -rf /tmp/helm
+  && rm -rf /tmp/helm \
+  && helm plugin install https://github.com/technosophos/helm-template
