@@ -31,5 +31,5 @@ RUN set -x \
   && mv /tmp/helm/linux-amd64/helm /usr/local/bin/helm \
   && chmod +x /usr/local/bin/helm \
   && rm -rf /tmp/helm \
-  && mkdir ~/.helm \
+  && mkdir -p ~/.helm/plugins \
   && helm plugin install https://github.com/technosophos/helm-template
