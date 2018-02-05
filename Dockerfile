@@ -13,7 +13,7 @@ RUN set -x \
 
 ## Install Powershell modules
 RUN set -x \
-    && pwsh -c "Install-Module -Force azure" \
+    && pwsh -c "Install-Module -Force AzureRM.NetCore" \
     && pwsh -c "Install-Module -Force powershell-yaml" \
     && pwsh -c "Install-Module -Force Posh-SSH"
 
@@ -31,5 +31,5 @@ RUN set -x \
   && mv /tmp/helm/linux-amd64/helm /usr/local/bin/helm \
   && chmod +x /usr/local/bin/helm \
   && rm -rf /tmp/helm \
-  && mkdir -p ~/.helm/plugins \
-  && helm plugin install https://github.com/technosophos/helm-template
+  && mkdir -p ~/.helm/plugins
+  #&& helm plugin install https://github.com/technosophos/helm-template
