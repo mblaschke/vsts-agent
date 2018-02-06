@@ -17,6 +17,16 @@ RUN set -x \
     && pwsh -c "Install-Module -Force powershell-yaml" \
     && pwsh -c "Install-Module -Force Posh-SSH"
 
+## Install python modules
+RUN set -x \
+    && apt-get update \
+    && apt-get install -y -f --no-install-recommends \
+        python-setuptools
+    && apt-get clean \
+    && easy_install pip \
+    && pip install \
+        azure
+
 ## Install tools
 RUN set -x \
   # k8s kubectl
