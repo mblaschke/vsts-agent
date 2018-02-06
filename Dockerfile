@@ -21,7 +21,8 @@ RUN set -x \
 RUN set -x \
     && apt-get update \
     && apt-get install -y -f --no-install-recommends \
-        python-setuptools
+        python-setuptools \
+        python-dev \
     && apt-get clean \
     && easy_install pip \
     && pip install \
