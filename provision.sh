@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Install Build Tools
 sudo /bin/date +%H:%M:%S > /home/$5/install.progress.txt
@@ -187,9 +187,9 @@ sudo sed -i 's,NODE_ENV=production,,g' ./bin/vsts.agent.service.template
 
 
 curl https://packages.microsoft.com/keys/microsoft.asc | sudo apt-key add -
-curl https://packages.microsoft.com/config/ubuntu/14.04/prod.list | sudo tee /etc/apt/sources.list.d/microsoft.list
-sudo apt-get update
-sudo apt-get install -y powershell
+curl https://packages.microsoft.com/config/ubuntu/16.04/prod.list | sudo tee /etc/apt/sources.list.d/microsoft.list
+apt-get update
+apt-get install -y powershell
 
 ## Install Packages
 set -x \
@@ -199,8 +199,7 @@ set -x \
         jq \
         dos2unix \
         mysql-client \
-        postgresql-client \
-    && apt-get clean
+        postgresql-client
 
 ## Install Powershell modules
 set -x \
@@ -210,11 +209,9 @@ set -x \
 
 
 set -x \
-# k8s kubectl
 && KUBECTL_VERSION=$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt) \
 && curl -L -o /usr/local/bin/kubectl "https://storage.googleapis.com/kubernetes-release/release/$KUBECTL_VERSION/bin/linux/amd64/kubectl" \
 && chmod +x /usr/local/bin/kubectl \
-# k8s helm
 && HELM_VERSION=2.7.2 \
 && mkdir -p /tmp/helm \
 && curl -L -o /tmp/helm/helm.tar.gz "https://kubernetes-helm.storage.googleapis.com/helm-v${HELM_VERSION}-linux-amd64.tar.gz" \
