@@ -13,6 +13,7 @@ RUN set -x \
 
 ## Install Powershell modules
 RUN set -x \
+    && ln -s /usr/bin/pwsh /usr/bin/powershell \
     && pwsh -c "Install-Module -Force AzureRM.NetCore" \
     && pwsh -c "Install-Module -Force powershell-yaml" \
     && pwsh -c "Install-Module -Force Posh-SSH"
